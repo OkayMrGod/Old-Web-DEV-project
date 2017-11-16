@@ -1,0 +1,66 @@
+<h1>Workout Tracker</h1>
+
+<form id="new-entry">
+    <fieldset>
+        <legend>New Entry</legend>
+        <div>
+            <label for="name">Exercise Name</label>
+            <input id="name" type="text" required>
+        </div>
+        <div>
+            <label for="reps">Reps</label>
+            <input id="reps" type="number" min=0>
+        </div>
+        <div>
+            <label for="weight">Weight</label>
+            <input id="weight" type="number" min=0>
+        </div>
+        <div>
+            <label for="date">Date</label>
+            <input id="date" type="date">
+        </div>
+		<div>
+            <label for="lbs">lbs (1) KG (0)</label>
+            <input id="lbs" type="number" min=0 max =1>
+        </div>
+        <div>
+            <input type="submit" id="submit" value="Add Workout">
+        </div>
+    </fieldset>
+</form>
+<table id="workoutTable">
+    <caption>Completed Exercises</caption>
+    <thead>
+        <tr>
+            <th>Exercise Name</th>
+            <th>Reps</th>
+            <th>Weight</th>
+            <th>Date</th>
+            <th>lbs</th>
+            <th colspan="2" class="edit-delete"></th>
+        </tr>
+    </thead>
+    <tbody id="table-body">
+         {{#each rowData}}
+         <tr>
+             <td>{{this.name}}</td>
+             <td>{{this.reps}}</td>
+             <td>{{this.weight}}</td>
+             <td>{{this.date}}</td>
+             <td>{{this.lbs}}</td>
+             <td class="edit-delete">
+                 <form action="/edit" method="GET">
+                     <input type="hidden" name="editId" value="{{this.id}}">
+                 </form>
+            </td>
+            <td class="edit-delete">
+                <form>
+                    <input type="hidden" name="deleteId" value="{{this.id}}">
+                </form>
+           </td>
+         </tr>
+         {{/each}}
+    </tbody>
+</table>
+<div id="foot"></div>
+<script src="/js/home.js"></script>
